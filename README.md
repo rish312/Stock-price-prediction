@@ -1,59 +1,75 @@
-# RNN-based-Stock-Price-Prediction-using-LSTM
-This repository will consist of a **Long Short-Term Memory** implementation of a **Recurrent Neural Network** used to predict the stock prices of Google Stocks for the next working day based on their past few days opening price trends.
-</br>
+# ARIMA Model Development for Time Series Forecasting
 
-## Project Description
-### About
-- The project is the implementation of _Stock Market Price Predicion_ using a Long Short-Term Memory type of Recurrent Neural Network with **4 hidden layers of LSTM** and each layer is added with a **Droupout** of **0.2** and tested on various values in the Experimentations.
-- The Preprocessing involves the Normailzation of the data using **MinMaxScaler** 
--  Training set was built considering the past **60 days** data of opening stock value as the learning parameters for the LSTM to predict the next day market opening stock value.
-- The Data set used in the project is google's stock market data for 5 years starting from **January 2012** till **December 2016** consisting of various features of stocks like opening value and closing values, etc. which can be downloaded from [TRAIN DATA](https://github.com/paras009/RNN-based-Stock-Price-Prediction-using-LSTM/blob/master/Google_Stock_Price_Train.csv) and [TEST DATA](https://github.com/paras009/RNN-based-Stock-Price-Prediction-using-LSTM/blob/master/Google_Stock_Price_Test.csv).
-- Various plots for different experimentations are shown below to understand how the model behaves over the given data showing various parameters dependence.
+## Overview
 
-### Experimentations
-#### Experiment-1 (60 days, 10 epochs)
-- The first experiment was run for **10 epochs** and learned over past **60 days** of data to analyze how the model will perform on the data and what could be the kind of predictions we can expect from the low epoch values. 
-- Below is the screenshot of the real vs the predicted regression for the test dataset.</br>
+This notebook contains the code and resources for developing an ARIMA model to forecast time series data. The model uses historical data to make predictions on future values, specifically focusing on stock prices.
 
-![60 Days, 10 epochs](https://github.com/paras009/RNN-based-Stock-Price-Prediction-using-LSTM/blob/master/images/60d-10eP.PNG)
+## Table of Contents
 
-#### Experiment-2 (60 days, 25 epochs)
-- The first experiment was run for **25 epochs** and learned over past **60 days** of data to analyze how the model will perform on the data and what could be the kind of predictions we can expect from the low epoch values. 
-- Below is the screenshot of the real vs the predicted regression for the test dataset.</br>
+- [Database Changes](#database-changes)
+- [ARIMA Model Development Process](#arima-model-development-process)
+- [Usage](#usage)
 
-![60 Days, 25 epochs](https://github.com/paras009/RNN-based-Stock-Price-Prediction-using-LSTM/blob/master/images/60d-25eP.PNG)
+## Database Changes
 
-#### Experiment-3 (60 days, 35 epochs, increasing Droupouts)
-- The first experiment was run for **35 epochs** and learned over past **60 days** and also increasing the droupouts to be **0.05, 0.10, 0.15 and 0.20** for each layer respectively of data to analyze how the model will perform on the data and what could be the kind of predictions we can expect from the low epoch values. 
-- Below is the screenshot of the real vs the predicted regression for the test dataset.</br>
+To facilitate the development of the ARIMA model, the following changes were made to the database:
 
-![60 Days, 35 epochs, inc epochs](https://github.com/paras009/RNN-based-Stock-Price-Prediction-using-LSTM/blob/master/images/60d-35eP-d.PNG)
+1. **New Features Added**:
 
-#### Experiment-4 (60 days, 50 epochs)
-- The first experiment was run for **50 epochs** and learned over past **60 days** of data to analyze how the model will perform on the data and what could be the kind of predictions we can expect from the low epoch values. 
-- Below is the screenshot of the real vs the predicted regression for the test dataset.</br>
+   - **Day of Week**: Extracted from the date to capture weekly seasonality.
+   - **Month**: Extracted from the date to capture monthly trends.
+   - **Lagged Close Price**: Included the previous day's closing price as a feature for better prediction accuracy.
+   - **Moving Averages**: Added 3-day and 7-day moving averages to smooth the data and identify trends.
+   - **Volume**: Included volume as a feature to understand its impact on stock prices.
 
-![60 Days, 50 epochs](https://github.com/paras009/RNN-based-Stock-Price-Prediction-using-LSTM/blob/master/images/60d-50eP.PNG)
+2. **Data Preprocessing**:
+   - Rows with missing values were removed after feature engineering to ensure model accuracy.
+   - Features were standardized using `StandardScaler` to improve model performance.
 
-#### Experiment-5 (60 days, 100 epochs)
-- The first experiment was run for **100 epochs** and learned over past **60 days** of data to analyze how the model will perform on the data and what could be the kind of predictions we can expect from the low epoch values. 
-- Below is the screenshot of the real vs the predicted regression for the test dataset.</br>
+## ARIMA Model Development Process
 
-![60 Days, 100 epochs](https://github.com/paras009/RNN-based-Stock-Price-Prediction-using-LSTM/blob/master/images/60d-100eP.PNG)
+The following steps outline the process for developing the ARIMA model:
 
-#### Experiment-6 (120 days, 100 epochs)
-- The first experiment was run for **100 epochs** and learned over past **120 days** of data to analyze how the model will perform on the data and what could be the kind of predictions we can expect from the low epoch values. 
-- This is the final experimentation till now before any hyper parameter tuning, as the model is fitting pretty better over the test data.
-- Below is the screenshot of the real vs the predicted regression for the test dataset.</br>
+1. **Data Loading**:
 
-![120 Days, 100 epochs](https://github.com/paras009/RNN-based-Stock-Price-Prediction-using-LSTM/blob/master/images/120d-100eP.PNG)
+   - Load historical stock price data from a CSV file, parsing dates correctly.
 
+2. **Feature Engineering**:
 
+   - Extract features like day of the week, month, lagged prices, moving averages, and volume.
+   - Drop any rows with NaN values resulting from feature engineering.
 
-## Analysis and Accuracy
-- I have achieved an overall loss of around **(~0.15%)** which is 0.0015 validation loss over 120 days past data training running for 100 epochs, calculated as Root mean squared error calculation.
-- Future Scope: The loss can still be optimized based on the **Hyper Parameter Tuning** to fit the model much better over the testing data.
+3. **Data Splitting**:
 
-![Accuracy Python Console](https://github.com/paras009/RNN-based-Stock-Price-Prediction-using-LSTM/blob/master/images/loss.PNG)
+   - Split the dataset into training and validation sets (80% training, 20% validation).
 
-#### Thank You!
+4. **Model Specification**:
+
+   - Specify the order of the ARIMA model (p, d, q) based on prior analysis or domain knowledge.
+   - Define seasonal orders if applicable.
+
+5. **Model Fitting**:
+
+   - Fit the SARIMAX model using the training dataset, including exogenous features.
+
+6. **Model Saving**:
+
+   - Save the trained model and scaler using `pickle` for later use in forecasting.
+
+7. **Model Testing**:
+
+   - Load the saved model and scaler.
+   - Preprocess the test dataset in the same way as the training dataset.
+   - Make predictions using the test dataset and evaluate model performance using RMSE (Root Mean Square Error).
+
+8. **Residual Analysis**:
+   - Analyze the residuals of the model to check for any patterns that may indicate model inadequacy.
+
+## Usage
+
+1. **Install Dependencies**:
+   Make sure you have the required packages installed. You can do this using `pip`:
+
+   ```bash
+   pip install pandas numpy scikit-learn statsmodels
+   ```
