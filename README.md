@@ -101,32 +101,11 @@ The sequence of all the algorithms used is as follows:
 1. Linear Regression
 2. SVR
 3. Random Forest
-4. Gradient Boosting Models (GBM)
-5. Extreme Gradient Boosting (XGBoost)
-6. AdaBoostRegressor
-7. Decision Tree
-8. KNeighborsRegressor (KNN)
-9. Artificial Neural Networks (ANN)
-10. Long Short Term Memory (LSTM)
+4. Decision Tree
+5. KNeighborsRegressor (KNN)
+6. Artificial Neural Networks (ANN)
+7. Long Short Term Memory (LSTM)
 
-## 📊 Performance Metrics
-
-The **Root Mean Square Error (RMSE)** of all the following 10 Regression Algorithms is provided below: 
-<img src="images/f23e9194-72de-438d-bd69-744667680d3e.jpeg" alt="Performance-Metrices" width="400" height="300">
-
-
-The **Mean Absolute Error (MAE)** of all the following 10 Regression Algorithms is provided below: 
-
-<img src="images/085ee2d1-3544-4bed-a558-5b0b801e806b.jpeg" alt="Performance-Metrices" width="400" height="300">
-
-
-The **Mean Absolute Percentage Error (MAPE)** of all the following 10 Regression Algorithms is provided below: 
-
-<img src="images/6c9ebb5b-a8ed-44de-8842-bf8f5c25990f.jpeg" alt="Performance-Metrices" width="400" height="300">
-
-## 🔧 Optimization Techniques
-
-We have applied several Intel-specific optimization techniques to enhance the performance of our models. For detailed information, please refer to the [Optimization Techniques](./Intel_Optimized/Intel_Optimization.md) document.
 
 ## 🔮 Future Work
 
@@ -135,7 +114,7 @@ We have applied several Intel-specific optimization techniques to enhance the pe
 
 ## 🏆 Conclusion
 
-Among the models assessed, **AdaBoostRegressor** and **LSTM** emerged as the top performers, showcasing low RMSE, MAE, and MAPE values. These metrics suggest that these algorithms effectively capture the underlying trends and patterns in the stock price data, making them reliable for prediction tasks.
+Among the models assessed, **LSTM** emerged as the top performers, showcasing low RMSE, MAE, and MAPE values. These metrics suggest that these algorithms effectively capture the underlying trends and patterns in the stock price data, making them reliable for prediction tasks.
 
 While some models demonstrated solid predictive capabilities, others, such as **Support Vector Regression (SVR)** and **KNeighborsRegressor**, recorded higher RMSE and MAE values. This indicates that these algorithms may yield acceptable predictions on average but are susceptible to significant errors in certain scenarios, emphasizing the need for careful model selection for stock price predictions.
 
