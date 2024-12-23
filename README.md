@@ -55,9 +55,6 @@ We implemented the following regression algorithms for stock price prediction:
 | Linear Regression                        | A basic regression algorithm.                       |
 | Support Vector Regression (SVR)         | Effective for non-linear relationships.             |
 | Random Forest                            | Ensemble learning method using decision trees.      |
-| Gradient Boosting Models (GBM)          | Sequentially builds models to improve predictions.  |
-| Extreme Gradient Boosting (XGBoost)     | Advanced boosting technique with regularization.    |
-| AdaBoostRegressor                        | Combines multiple weak learners.                    |
 | Decision Tree                            | Simple yet effective model based on tree structure. |
 | KNeighborsRegressor (KNN)               | Predicts based on nearest neighbors' average.      |
 | Artificial Neural Networks (ANN)        | Mimics human brain for complex data patterns.       |
